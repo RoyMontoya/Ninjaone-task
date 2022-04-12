@@ -3,16 +3,23 @@ import Selector from "../Select/Selector";
 import CONSTANTS from "../../Common/Constants";
 
 function Header() {
-  let handleDeviceType = (param) => {
-    console.log("DEVICE TYPE", param);
+  const handleDeviceTypeChange = (type) => {
+    console.log("DEVICE TYPE", type);
+  };
+
+  const handleSortByChange = (sort) => {
+    console.log("SORT BY", sort);
   };
 
   return (
     <div className="app-header">
       <div className="selector-label">Device Type:</div>
-      <Selector onChange={handleDeviceType} options={CONSTANTS.DEVICE_TYPE} />
+      <Selector
+        onChange={handleDeviceTypeChange}
+        options={CONSTANTS.DEVICE_TYPE}
+      />
       <div className="selector-label">Sort By:</div>
-      <Selector options={CONSTANTS.SORT_BY} />
+      <Selector onChange={handleSortByChange} options={CONSTANTS.SORT_BY} />
     </div>
   );
 }

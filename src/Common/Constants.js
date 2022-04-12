@@ -12,15 +12,15 @@ const CONSTANTS = {
   DEVICE_TYPE: [
     {
       label: "Windows Workstation",
-      value: "windows_workstation",
+      value: "WINDOWS_WORKSTATION",
     },
     {
       label: "Windows Server",
-      value: "windows_server",
+      value: "WINDOWS_SERVER",
     },
     {
       label: "Mac",
-      value: "mac",
+      value: "MAC",
     },
   ],
   DUMMY_API: [
@@ -43,6 +43,11 @@ const CONSTANTS = {
       capacity: 1024,
     },
   ],
+  SYSTEM_NAME: "system_name",
+  HDD_CAPACITY: "hdd_capacity",
+  WINDOWS_WORKSTATION: "windows_workstation",
+  WINDOWS_SERVER: "windows_server",
+  MAC: "mac",
 };
 
 export default CONSTANTS;
