@@ -5,8 +5,19 @@
   justify-content: center;
 }
 
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .device-list > ul {
   list-style: none;
+}
+
+.delete-icon {
+  cursor: pointer;
+  color: red;
 }
 
 .device-list > ul > li > div {

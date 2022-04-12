@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "../Header/Header";
 import DeviceList from "../DeviceList/DeviceList";
 import CONSTANTS from "../../Common/Constants";
-import { getDevices } from "../../API/Actions";
+import { getDevices, deleteDevice } from "../../API/Actions";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -14,24 +14,30 @@ function App() {
 
   const handleSortChange = (sortBy) => {
     if (sortBy.value === CONSTANTS.SYSTEM_NAME) {
-      return [...CONSTANTS.DUMMY_API].sort();
+      return [...devices].sort();
     } else {
-      return [...CONSTANTS.DUMMY_API].sort((a, b) => {
+      return [...devices].sort((a, b) => {
         return a.capacity - b.capacity;
       });
     }
   };
 
   const handleFilterChange = (filter) => {
-    return [...CONSTANTS.DUMMY_API].filter(
-      (device) => device.type === filter.value
-    );
+    return [...devices].filter((device) => device.type === filter.value);
+  };
+
+  const handleDeleteClick = (id) => {
+    deleteDevice(id).then((devices) => setDevices(devices));
   };
 
   return (
     <div className="App">
+      <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+      ></link>
       <Header />
-      <DeviceList devices={devices} />
+      <DeviceList devices={devices} deleteHandler={handleDeleteClick} />
     </div>
   );
 }

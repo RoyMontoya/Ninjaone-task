@@ -14,11 +14,19 @@ function DeviceList(props) {
       <ul>
         {props.devices.map((device) => {
           return (
-            <li>
-              <div>
-                <p className="label-bold">{device.system_name}</p>
-                <p className="label-blue">{parseDeviceType(device.type)}</p>
-                <p className="label-bold">{device.capacity} GB</p>
+            <li key={device.id}>
+              <div className="card-body">
+                <div>
+                  <p className="label-bold">{device.system_name}</p>
+                  <p className="label-blue">{parseDeviceType(device.type)}</p>
+                  <p className="label-bold">{device.capacity} GB</p>
+                </div>
+                <span
+                  onClick={() => props.deleteHandler(device.id)}
+                  className="material-icons delete-icon"
+                >
+                  delete
+                </span>
               </div>
             </li>
           );
