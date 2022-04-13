@@ -45,9 +45,6 @@ const CONSTANTS = {
   ],
   SYSTEM_NAME: "system_name",
   HDD_CAPACITY: "hdd_capacity",
-  WINDOWS_WORKSTATION: "windows_workstation",
-  WINDOWS_SERVER: "windows_server",
-  MAC: "mac",
 };
 
 export default CONSTANTS;

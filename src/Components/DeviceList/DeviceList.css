@@ -16,8 +16,15 @@
 }
 
 .delete-icon {
-  cursor: pointer;
   color: red;
+}
+
+.edit-icon {
+  color: blue;
+}
+
+.icon {
+  cursor: pointer;
 }
 
 .device-list > ul > li > div {
@@ -36,4 +43,10 @@
 .label-bold,
 .label-blue {
   margin: 0.5rem 0;
+}
+
+.action-icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

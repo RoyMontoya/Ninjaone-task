@@ -1,6 +1,7 @@
 .app-header {
   width: 50%;
   display: flex;
+  justify-content: center;
 }
 
 .selector-label {

@@ -19,14 +19,22 @@ function DeviceList(props) {
                 <div>
                   <p className="label-bold">{device.system_name}</p>
                   <p className="label-blue">{parseDeviceType(device.type)}</p>
-                  <p className="label-bold">{device.capacity} GB</p>
+                  <p className="label-bold">{device.hdd_capacity} GB</p>
                 </div>
-                <span
-                  onClick={() => props.deleteHandler(device.id)}
-                  className="material-icons delete-icon"
-                >
-                  delete
-                </span>
+                <div className="action-icons">
+                  <span
+                    onClick={() => props.editHandler(device)}
+                    className="material-icons edit-icon icon"
+                  >
+                    edit
+                  </span>
+                  <span
+                    onClick={() => props.deleteHandler(device.id)}
+                    className="material-icons delete-icon icon"
+                  >
+                    delete
+                  </span>
+                </div>
               </div>
             </li>
           );
