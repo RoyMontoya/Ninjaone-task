@@ -2,7 +2,6 @@ import "./App.css";
 import Header from "../Header/Header";
 import DeviceList from "../DeviceList/DeviceList";
 import DeviceModal from "../DeviceModal/DeviceModal";
-import CONSTANTS from "../../Common/Constants";
 import { getDevices, deleteDevice } from "../../API/Actions";
 import { useState, useEffect, useMemo } from "react";
 
@@ -10,6 +9,8 @@ function App() {
   const [devices, setDevices] = useState([]);
   const [filter, setFilter] = useState(null);
   const [sort, setSort] = useState(null);
+  const [currentDevice, setCurrentDevice] = useState(null);
+  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
     getDevices().then((devices) => setDevices(devices));
@@ -28,13 +29,28 @@ function App() {
   };
 
   const handleEditClick = (device) => {
-    console.log(device);
+    setCurrentDevice(device);
+    setModalShow(true);
+  };
+
+  const handleModalClose = () => {
+    setModalShow(false);
+    setCurrentDevice(null);
+  };
+
+  const modalSubmit = (device) => {
+    setModalShow(false);
+    if (devices.find((dev) => dev.id === device.id)) {
+      console.log("UPDATE");
+    } else {
+      console.log("CREATE");
+    }
   };
 
   const deviceList = useMemo(() => {
     let deviceToDisplay = filter
       ? [...devices].filter((device) => device.type === filter)
-      : devices;
+      : [...devices];
 
     if (sort) {
       deviceToDisplay.sort((a, b) => {
@@ -58,7 +74,12 @@ function App() {
         deleteHandler={handleDeleteClick}
         editHandler={handleEditClick}
       />
-      {/* <DeviceModal /> */}
+      <DeviceModal
+        show={modalShow}
+        device={currentDevice}
+        handleSubmit={modalSubmit}
+        onClose={handleModalClose}
+      />
     </div>
   );
 }
