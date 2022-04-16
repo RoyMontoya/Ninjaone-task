@@ -10,7 +10,6 @@
 .modal-body {
   display: flex;
   flex-direction: column;
-  margin-top: 5%;
   justify-content: space-between;
   align-items: center;
 }
@@ -26,17 +25,29 @@
   width: 100%;
 }
 
-.row > input {
-  margin-left: 5%;
+.row > label {
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .modal-footer {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .modal-footer > button {
   margin-right: 5%;
+}
+
+.modal-input {
+  padding: 8px;
+  border-radius: 5px;
+  border-color: lightgray;
+  width: 55%;
+}
+
+.modal-selector {
+  width: 60%;
 }
