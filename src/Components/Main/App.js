@@ -2,7 +2,12 @@ import "./App.css";
 import Header from "../Header/Header";
 import DeviceList from "../DeviceList/DeviceList";
 import DeviceModal from "../DeviceModal/DeviceModal";
-import { getDevices, deleteDevice } from "../../API/Actions";
+import {
+  getDevices,
+  deleteDevice,
+  editDevice,
+  addDevice,
+} from "../../API/Actions";
 import { useState, useEffect, useMemo } from "react";
 
 function App() {
@@ -38,12 +43,12 @@ function App() {
     setCurrentDevice(null);
   };
 
-  const modalSubmit = (device) => {
+  const modalSubmit = (device, isEditing) => {
     setModalShow(false);
-    if (devices.find((dev) => dev.id === device.id)) {
-      console.log("UPDATE");
+    if (isEditing) {
+      editDevice(device).then((devices) => setDevices(devices));
     } else {
-      console.log("CREATE");
+      addDevice(device).then((devices) => setDevices(devices));
     }
   };
 

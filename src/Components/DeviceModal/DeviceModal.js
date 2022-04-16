@@ -59,6 +59,11 @@ function DeviceModal(props) {
     setSelectValue({});
   };
 
+  const handleSubmit = () => {
+    cleanModal();
+    props.handleSubmit(formData, isEditing);
+  };
+
   useEffect(() => {
     if (props.device) {
       setFormData({ ...props.device });
@@ -77,7 +82,7 @@ function DeviceModal(props) {
         <span>{headerText()}</span>
       </div>
       <div className="modal-body">
-        <form onSubmit={() => props.handleSubmit(formData)}>
+        <form onSubmit={handleSubmit}>
           <div className="row">
             <label>System Name *</label>
             <input
