@@ -47,6 +47,11 @@ function App() {
     }
   };
 
+  const handleAddDevice = () => {
+    setModalShow(true);
+    setCurrentDevice(null);
+  };
+
   const deviceList = useMemo(() => {
     let deviceToDisplay = filter
       ? [...devices].filter((device) => device.type === filter)
@@ -66,6 +71,7 @@ function App() {
   return (
     <div className="App">
       <Header
+        onAdd={handleAddDevice}
         onSortChange={handleSortChange}
         onFilterChange={handleFilterChange}
       />

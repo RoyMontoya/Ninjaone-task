@@ -45,16 +45,18 @@ function DeviceModal(props) {
     setFormData(updatedFormData);
   };
 
-  const handleTypeChange = ({ value }) => {
+  const handleTypeChange = (selection) => {
     setFormData({
       ...formData,
-      type: value,
+      type: selection.value,
     });
+    setSelectValue(selection);
   };
 
   const cleanModal = () => {
     props.onClose();
     setFormData({});
+    setSelectValue({});
   };
 
   useEffect(() => {
@@ -64,6 +66,8 @@ function DeviceModal(props) {
         (type) => type.value === props.device.type
       );
       setSelectValue(def);
+    } else {
+      setSelectValue({});
     }
   }, [props.device]);
 

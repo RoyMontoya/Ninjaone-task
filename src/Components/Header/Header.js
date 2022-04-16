@@ -12,6 +12,10 @@ function Header(props) {
       />
       <div className="selector-label">Sort By:</div>
       <Selector onChange={props.onSortChange} options={CONSTANTS.SORT_BY} />
+      <button onClick={props.onAdd} className="add-button">
+        <span className="material-icons icon">add</span>
+        <span>Add</span>
+      </button>
     </div>
   );
 }
