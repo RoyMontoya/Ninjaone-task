@@ -55,9 +55,16 @@ function DeviceModal(props) {
     setSelectValue({});
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!isDeviceValid(formData))
+      return alert("All fields must be filled to proceed");
     cleanModal();
     props.handleSubmit(formData, isEditing);
+  };
+
+  const isDeviceValid = (device) => {
+    return device.system_name && device.hdd_capacity && device.type;
   };
 
   useEffect(() => {

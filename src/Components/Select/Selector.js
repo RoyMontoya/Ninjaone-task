@@ -3,6 +3,7 @@ import "./Selector.css";
 
 const Selector = (props) => (
   <Select
+    styles={{ option: (styles) => ({ minHeight: 40, ...styles }) }}
     value={props.value}
     className={`selector ${props.styleNames || ""}`}
     onChange={props.onChange}

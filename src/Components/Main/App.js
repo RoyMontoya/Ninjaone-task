@@ -48,11 +48,12 @@ function App() {
 
   const modalSubmit = (device, isEditing) => {
     setModalShow(false);
-    if (isEditing) {
-      editDevice(device).then((devices) => setDevices(devices));
-    } else {
-      addDevice(device).then((devices) => setDevices(devices));
-    }
+    const action = isEditing ? "updated" : "created";
+    const submit = isEditing ? editDevice : addDevice;
+    submit(device).then((devices) => {
+      setDevices(devices);
+      alert(`Device ${device.system_name} was ${action}`);
+    });
   };
 
   const handleAddDevice = () => {
