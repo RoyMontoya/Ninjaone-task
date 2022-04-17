@@ -1,8 +1,12 @@
 .app-header {
-  width: 50%;
-  margin-top: 50px;
+  padding: 50px 0 25px 0;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
+  width: 50%;
 }
 
 .selector-label {

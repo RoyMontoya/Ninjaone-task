@@ -105,10 +105,10 @@ function DeviceModal(props) {
             />
           </div>
           <div className="row">
-            <label>System Name *</label>
+            <label>HDD Capacity *</label>
             <input
               className="modal-input"
-              type="text"
+              type="number"
               id="hdd_capacity"
               onChange={handleInputChange}
               value={formData.hdd_capacity || ""}
