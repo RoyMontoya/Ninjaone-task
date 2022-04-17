@@ -29,7 +29,7 @@ function DeviceList(props) {
                     edit
                   </span>
                   <span
-                    onClick={() => props.deleteHandler(device.id)}
+                    onClick={() => props.deleteHandler(device)}
                     className="material-icons delete-icon icon"
                   >
                     delete

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Modal from "react-modal";
 import "./DeviceModal.css";
 import Selector from "../Select/Selector";
@@ -14,7 +14,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     borderRadius: "10px",
     width: "500px",
-    height: "250px",
+    height: "300px",
     overflow: "hidden",
   },
 };
@@ -22,7 +22,7 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 function DeviceModal(props) {
-  const [isEditing] = useState(props.device !== null);
+  const [isEditing, setEditing] = useState(Object.keys(props.device).length);
   const [formData, setFormData] = useState({
     system_name: "",
     type: "",
@@ -32,10 +32,6 @@ function DeviceModal(props) {
     value: "",
     label: "",
   });
-
-  const headerText = () => {
-    return isEditing ? "Edit Device" : "Add Device";
-  };
 
   const handleInputChange = (event) => {
     const updatedFormData = {
@@ -65,21 +61,27 @@ function DeviceModal(props) {
   };
 
   useEffect(() => {
-    if (props.device) {
+    if (Object.keys(props.device).length) {
       setFormData({ ...props.device });
-      const def = CONSTANTS.DEVICE_TYPE.find(
+      const deviceType = CONSTANTS.DEVICE_TYPE.find(
         (type) => type.value === props.device.type
       );
-      setSelectValue(def);
+      setSelectValue(deviceType);
+      setEditing(true);
     } else {
       setSelectValue({});
+      setEditing(false);
     }
   }, [props.device]);
+
+  const modalTitle = useMemo(() => {
+    return isEditing ? "Edit Device" : "Add Device";
+  }, [isEditing]);
 
   return (
     <Modal isOpen={props.show} style={customStyles} onRequestClose={cleanModal}>
       <div className="modal-header">
-        <span>{headerText()}</span>
+        <span>{modalTitle}</span>
       </div>
       <div className="modal-body">
         <form onSubmit={handleSubmit}>
@@ -89,7 +91,7 @@ function DeviceModal(props) {
               className="modal-input"
               type="text"
               id="system_name"
-              value={formData.system_name}
+              value={formData.system_name || ""}
               onChange={handleInputChange}
             />
           </div>
@@ -109,12 +111,14 @@ function DeviceModal(props) {
               type="text"
               id="hdd_capacity"
               onChange={handleInputChange}
-              value={formData.hdd_capacity}
+              value={formData.hdd_capacity || ""}
             />
           </div>
           <div className="modal-footer">
-            <button onClick={cleanModal}>Cancel</button>
-            <input type="submit" value="Submit" />
+            <button className="btn btn-secondary" onClick={cleanModal}>
+              Cancel
+            </button>
+            <input className="btn btn-primary" type="submit" value="Submit" />
           </div>
         </form>
       </div>

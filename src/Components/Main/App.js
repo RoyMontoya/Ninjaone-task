@@ -14,7 +14,7 @@ function App() {
   const [devices, setDevices] = useState([]);
   const [filter, setFilter] = useState(null);
   const [sort, setSort] = useState(null);
-  const [currentDevice, setCurrentDevice] = useState(null);
+  const [currentDevice, setCurrentDevice] = useState({});
   const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
@@ -29,8 +29,11 @@ function App() {
     setFilter(filter.value);
   };
 
-  const handleDeleteClick = (id) => {
-    deleteDevice(id).then((devices) => setDevices(devices));
+  const handleDeleteClick = ({ id, system_name }) => {
+    deleteDevice(id).then((devices) => {
+      setDevices(devices);
+      alert(`Device ${system_name} has been deleted`);
+    });
   };
 
   const handleEditClick = (device) => {
@@ -40,7 +43,7 @@ function App() {
 
   const handleModalClose = () => {
     setModalShow(false);
-    setCurrentDevice(null);
+    setCurrentDevice({});
   };
 
   const modalSubmit = (device, isEditing) => {
@@ -54,7 +57,7 @@ function App() {
 
   const handleAddDevice = () => {
     setModalShow(true);
-    setCurrentDevice(null);
+    setCurrentDevice({});
   };
 
   const deviceList = useMemo(() => {
