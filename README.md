@@ -1,10 +1,10 @@
-# Getting Started with Create React App
+# Steps to start the application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+note: this application must be run in parallel with devicesTask_serverApp([https://github.com/NinjaRMM/devicesTask_serverApp])
 
-## Available Scripts
-
-In the project directory, you can run:
+1- run npm start in devicesTask_serverApp port: 3000
+2- run npm start in this application port: 3001
+3- thats all! both application should be running and devices should show in the application.
 
 ### `npm start`
 
