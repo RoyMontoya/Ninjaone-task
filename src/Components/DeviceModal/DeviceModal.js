@@ -57,8 +57,7 @@ function DeviceModal(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!isDeviceValid(formData))
-      return alert("All fields must be filled to proceed");
+    if (!isDeviceValid(formData)) return alert("All fields are required");
     cleanModal();
     props.handleSubmit(formData, isEditing);
   };

@@ -2,7 +2,7 @@ const CONSTANTS = {
   SORT_BY: [
     {
       label: "",
-      value: "",
+      value: null,
     },
     {
       label: "System Name",
@@ -16,7 +16,7 @@ const CONSTANTS = {
   DEVICE_TYPE: [
     {
       label: "",
-      value: "",
+      value: null,
     },
     {
       label: "Windows Workstation",
